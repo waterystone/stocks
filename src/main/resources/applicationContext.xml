@@ -12,5 +12,6 @@
 
 	<context:component-scan base-package="com.adu.stocks" />
 
-	<import resource="classpath:/com/sohu/adrd/hotnews_service/service/service.xml" />
+	<import resource="classpath:/com/adu/stocks/task/task.xml" />
+	<import resource="classpath:quartz.xml" />
 </beans>
