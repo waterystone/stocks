@@ -1,2 +1,0 @@
-2014-10-30 11:45:00.519 DEBUG CompanyTest:13 - company=Company [id=0, code=sh600495, name=晋西车轴]
-2014-10-30 11:57:12.532 DEBUG StockTest:27 - stock=Stock [id=1, code=sh600495, date=2014-10-30, lastClose=20.5, open=20.22, high=20.65, low=19.85, close=20.18, insertTime=2014-10-30 11:57:12.53]
