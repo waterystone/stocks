@@ -18,7 +18,7 @@ public class StockTest {
 		float lastClose = 20.50f;
 		float open = 20.22f;
 		float high = 20.65f;
-		float low = 19.85f;
+		float low = 19.88f;
 		float close = 20.18f;
 
 		Timestamp insertTime = new Timestamp(System.currentTimeMillis());
