@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.adu.stocks.model.Company;
+import com.adu.stocks.model.Result;
 import com.adu.stocks.model.Stock;
 import com.adu.stocks.utils.CompanyParserUtil;
 
@@ -23,6 +24,17 @@ public class StockDaoTest {
 	@Autowired
 	private StockDao stockDao;
 	private Log logger = LogFactory.getLog(this.getClass());
+
+	@Test
+	public void getResult() {
+		String startDate = "2014-10-30";
+		String endDate = "2014-10-31";
+		float riseRange = 2.0f;
+		List<Result> res = stockDao.getResult(startDate, endDate, riseRange);
+		for (Result result : res) {
+			logger.debug(result);
+		}
+	}
 
 	@Test
 	public void addStocks() {

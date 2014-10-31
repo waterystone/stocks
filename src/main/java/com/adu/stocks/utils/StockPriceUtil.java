@@ -96,16 +96,16 @@ public class StockPriceUtil {
 				while (matcher.find()) {
 					try {
 						String code = matcher.group(1);
-						String open = matcher.group(2);
-						String lastClose = matcher.group(3);
-						String close = matcher.group(4);
-						String high = matcher.group(5);
-						String low = matcher.group(6);
+						float open = Float.valueOf(matcher.group(2));
+						float lastClose = Float.valueOf(matcher.group(3));
+						float close = Float.valueOf(matcher.group(4));
+						float high = Float.valueOf(matcher.group(5));
+						float low = Float.valueOf(matcher.group(6));
 						String date = matcher.group(7);
+
 						Stock stock = new Stock(code, new Date(formater.parse(
-								date).getTime()), Float.valueOf(lastClose),
-								Float.valueOf(open), Float.valueOf(high),
-								Float.valueOf(low), Float.valueOf(close));
+								date).getTime()), lastClose, open, high, low,
+								close);
 						res.put(code, stock);
 					} catch (Exception e) {
 						logger.error("[ERROR-match]httpResult=" + httpResult, e);

@@ -55,6 +55,9 @@ public class CompanyParserUtil {
 					String text = a.getFirstChild().getText();// R007(201001)
 
 					String code = href.substring(27, 35);// 股票代号
+					if (!code.matches("(sh600|sh601|sz000|sz300|sz002|sz112)\\d{3}")) {
+						continue;
+					}
 					String name = text.substring(0, text.indexOf("("));// 公司名称
 					Company company = new Company(code, name);
 					res.add(company);

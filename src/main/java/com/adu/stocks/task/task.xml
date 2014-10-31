@@ -6,14 +6,10 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	default-autowire="byType">
-
-	<!-- 加载配置 -->
-	<context:property-placeholder location="classpath:stocks/service.properties"
-		ignore-unresolvable="true" />
-
 	<import resource="classpath:/com/adu/stocks/service/service.xml" />
 
 	<bean id="pullTask" class="com.adu.stocks.task.PullTask" />
+	<bean id="emailTask" class="com.adu.stocks.task.EmailTask" />
 
 
 </beans>

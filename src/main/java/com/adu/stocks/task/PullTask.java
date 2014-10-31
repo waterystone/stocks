@@ -8,30 +8,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.adu.stocks.model.Company;
 import com.adu.stocks.model.Stock;
 import com.adu.stocks.service.StockService;
-import com.adu.stocks.utils.CompanyParserUtil;
 import com.adu.stocks.utils.StockPriceUtil;
 
 public class PullTask {
 	@Autowired
 	private StockService stockService;
 	private Log logger = LogFactory.getLog(this.getClass());
-
-	public void updateCompanies() {
-		try {
-			long t1 = System.currentTimeMillis();
-			List<Company> companies = CompanyParserUtil.getCompanyList();
-			int addCount = stockService.updateCompanies(companies);
-			long t2 = System.currentTimeMillis();
-
-			logger.debug("[update-companies]addCount=" + addCount + ",time="
-					+ (t2 - t1) + "ms");
-		} catch (Exception e) {
-			logger.error("[ERROR-updateCompanies]", e);
-		}
-	}
 
 	public void updateStocksPrice() {
 		try {

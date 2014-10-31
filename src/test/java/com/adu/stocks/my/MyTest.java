@@ -1,6 +1,5 @@
 package com.adu.stocks.my;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +37,17 @@ public class MyTest {
 				logger.debug(stock);
 			}
 		}
+	}
+
+	@Test
+	public void updateCompanies() {
+		long t1 = System.currentTimeMillis();
+		List<Company> companies = CompanyParserUtil.getCompanyList();
+		int addCount = stockService.updateCompanies(companies);
+		long t2 = System.currentTimeMillis();
+
+		logger.debug("[update-companies]addCount=" + addCount + ",time="
+				+ (t2 - t1) + "ms");
 	}
 
 }

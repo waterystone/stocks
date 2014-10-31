@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.adu.stocks.model.Company;
 import com.adu.stocks.utils.CompanyParserUtil;
 
-public class CompanyParserTest {
+public class CompanyParserUtilTest {
 	private Log logger = LogFactory.getLog(this.getClass());
 
 	@Test

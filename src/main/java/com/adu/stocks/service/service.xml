@@ -6,11 +6,31 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	default-autowire="byType">
-
+	<!-- 加载配置 -->
+	<context:property-placeholder location="classpath:stocks/email.properties"
+		ignore-unresolvable="true" />
 
 	<import resource="classpath:/com/adu/stocks/dao/dao.xml" />
 
+	<!-- 实例化JavaMailSenderImpl对象 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="protocol" value="${email.protocol}"></property>
+		<property name="host" value="${email.host}"></property>
+		<property name="port" value="${email.port}"></property>
+		<property name="username" value="${email.username}"></property>
+		<property name="password" value="${email.password}"></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.${email.protocol}.auth">${email.auth}</prop>
+			</props>
+		</property>
+	</bean>
+
 	<bean id="stockService" class="com.adu.stocks.service.StockService" />
+	<bean id="emailService" class="com.adu.stocks.service.EmailService">
+		<property name="javaMailSender" ref="javaMailSender"></property>
+		<property name="systemEmail" value="${email.systemEmail}"></property>
+	</bean>
 
 
 </beans>

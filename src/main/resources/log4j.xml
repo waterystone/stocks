@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c{1}:%L - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="FATAL" />
+		</filter>
+	</appender>
 
 	<appender name="mainAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="./logs/main.log" />
@@ -9,8 +18,9 @@
 		</layout>
 	</appender>
 
-	<appender name="pullAppender" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="logs/pull.log" />
+	<appender name="startupAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="./logs/startup.log" />
+		<param name="Append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c{1}:%L - %m%n" />
 		</layout>
@@ -23,20 +33,23 @@
 		</layout>
 	</appender>
 
-	<logger name="com.adu.stocks.task.PullTask" additivity="false">
-		<level value="debug" />
-		<appender-ref ref="consoleAppender" />
-		<appender-ref ref="pullAppender" />
-	</logger>
 
 	<logger name="com.adu.stocks" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="mainAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<logger name="startup" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="startupAppender" />
+		<appender-ref ref="consoleAppender" />
 	</logger>
 
 	<root>
 		<level value="INFO" />
 		<appender-ref ref="rootAppender" />
+		<appender-ref ref="consoleAppender" />
 	</root>
 
 </log4j:configuration>

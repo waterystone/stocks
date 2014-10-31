@@ -9,12 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.adu.stocks.dao.StockDao;
 import com.adu.stocks.model.Company;
+import com.adu.stocks.model.Result;
 import com.adu.stocks.model.Stock;
 
 public class StockService {
 	@Autowired
 	private StockDao stockDao;
 	private Log logger = LogFactory.getLog(this.getClass());
+
+	public List<Result> getResult(String startDate, String endDate,
+			float riseRange) {
+		List<Result> ret = null;
+		try {
+			ret = stockDao.getResult(startDate, endDate, riseRange);
+		} catch (Exception e) {
+			logger.error("[ERROR-getResult]startDate=" + startDate
+					+ ",endDate=" + endDate + ",riseRange=" + riseRange, e);
+		}
+		return ret;
+	}
 
 	public int addStocks(final List<Stock> stocks) {
 		int ret = 0;
