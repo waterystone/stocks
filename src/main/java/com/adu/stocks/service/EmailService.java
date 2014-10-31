@@ -8,6 +8,13 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
+/**
+ * 邮件服务
+ * 
+ * @author yunjiedu
+ * @email yunjiedu@sohu-inc.com
+ * @date 2014-10-31 下午5:48:25
+ */
 public class EmailService {
 	private JavaMailSender javaMailSender;
 	private String systemEmail;
@@ -29,6 +36,16 @@ public class EmailService {
 		this.systemEmail = systemEmail;
 	}
 
+	/**
+	 * 发邮件
+	 * 
+	 * @param to
+	 *            收件人
+	 * @param subject
+	 *            主题
+	 * @param htmlText
+	 *            html格式内容
+	 */
 	public void sendMail(String to, String subject, String htmlText) {
 		try {
 			MimeMessage msg = javaMailSender.createMimeMessage();

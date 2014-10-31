@@ -14,10 +14,28 @@ import com.adu.stocks.model.Company;
 import com.adu.stocks.model.Result;
 import com.adu.stocks.model.Stock;
 
+/**
+ * DB相关操作
+ * 
+ * @author yunjiedu
+ * @email yunjiedu@sohu-inc.com
+ * @date 2014-10-31 下午5:38:03
+ */
 public class StockDao {
 	private JdbcTemplate jdbcTemplate;
 	private Log logger = LogFactory.getLog(this.getClass());
 
+	/**
+	 * 从DB取出统计结果
+	 * 
+	 * @param startDate
+	 *            开始时间，形如"2014-10-22"
+	 * @param endDate
+	 *            结束时间，形如"2014-10-28"
+	 * @param riseRange
+	 *            浮动基数
+	 * @return
+	 */
 	public List<Result> getResult(String startDate, String endDate,
 			float riseRange) {
 		List<Result> ret = new ArrayList<Result>();
@@ -36,15 +54,15 @@ public class StockDao {
 
 		// 对查询到的每条记录进行解析
 		for (Map<String, Object> row : rows) {
-			String code = row.get("code").toString();
-			String name = row.get("name").toString();
-			int count = ((Long) row.get("count")).intValue();
-			float avgRise = ((Double) row.get("avg_rise")).floatValue();
-			float avgFall = ((Double) row.get("avg_fall")).floatValue();
+			String code = row.get("code").toString();// 代码
+			String name = row.get("name").toString();// 公司名称
+			int count = ((Long) row.get("count")).intValue();// 开盘-最高价浮动超过基数的天数
+			float avgRise = ((Double) row.get("avg_rise")).floatValue();// 平均开盘最高涨幅
+			float avgFall = ((Double) row.get("avg_fall")).floatValue();// 平均开盘最高跌幅
 			float avgLastRise = ((Double) row.get("avg_last_rise"))
-					.floatValue();
+					.floatValue();// 平均昨天收盘最高涨幅
 			float avgLastFall = ((Double) row.get("avg_last_fall"))
-					.floatValue();
+					.floatValue();// 平均昨天收盘最高跌幅
 			Result result = new Result(code, name, count, avgRise, avgFall,
 					avgLastRise, avgLastFall);
 			ret.add(result);
@@ -53,6 +71,12 @@ public class StockDao {
 		return ret;
 	}
 
+	/**
+	 * 增加股票价格信息
+	 * 
+	 * @param stocks
+	 * @return
+	 */
 	public int addStocks(final List<Stock> stocks) {
 		int ret = 0;
 		if (stocks == null || stocks.size() == 0) {
@@ -96,6 +120,11 @@ public class StockDao {
 		return ret;
 	}
 
+	/**
+	 * 获取所有上市公司信息
+	 * 
+	 * @return
+	 */
 	public Map<String, Company> getAllCompanies() {
 		Map<String, Company> res = new HashMap<String, Company>();
 
@@ -118,6 +147,11 @@ public class StockDao {
 		return res;
 	}
 
+	/**
+	 * 获取所有上市公司代码
+	 * 
+	 * @return
+	 */
 	public List<String> getAllCodes() {
 		List<String> res = new ArrayList<String>();
 
@@ -135,6 +169,12 @@ public class StockDao {
 		return res;
 	}
 
+	/**
+	 * 增加公司信息(存在则忽略)
+	 * 
+	 * @param companies
+	 * @return
+	 */
 	public int updateCompanies(final List<Company> companies) {
 		int ret = 0;
 		if (companies == null || companies.size() == 0) {

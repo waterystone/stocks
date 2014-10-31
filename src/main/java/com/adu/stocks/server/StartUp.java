@@ -13,7 +13,7 @@ import com.adu.stocks.task.PullTask;
  * 
  * @author yunjiedu
  * @email yunjiedu@sohu-inc.com
- * @date 2014-10-31 下午4:48:22
+ * @date 2014-10-31 下午5:47:08
  */
 public class StartUp {
 	private static Log logger = LogFactory.getLog("startup");
@@ -25,10 +25,11 @@ public class StartUp {
 			context = new ClassPathXmlApplicationContext(
 					"applicationContext.xml");
 
-			// 启动consumer，分析视频广告的日志数据
+			// 摘取今日股票信息并入库
 			PullTask pullTask = (PullTask) context.getBean("pullTask");
 			pullTask.updateStocksPrice();
 
+			// 统计结果并发送邮件
 			EmailTask emailTask = (EmailTask) context.getBean("emailTask");
 			emailTask.sendMail();
 			logger.info("main end~");

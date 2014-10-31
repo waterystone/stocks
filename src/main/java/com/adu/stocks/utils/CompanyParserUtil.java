@@ -18,11 +18,11 @@ import org.htmlparser.util.NodeList;
 import com.adu.stocks.model.Company;
 
 /**
- * 获取最新上市公司列表
+ * 线上爬取上市公司列表
  * 
  * @author yunjiedu
  * @email yunjiedu@sohu-inc.com
- * @date 2014-10-30 下午1:46:35
+ * @date 2014-10-31 下午5:54:21
  */
 public class CompanyParserUtil {
 	private static final String COMPANY_LIST_URL = "http://quote.eastmoney.com/stocklist.html";
@@ -55,7 +55,9 @@ public class CompanyParserUtil {
 					String text = a.getFirstChild().getText();// R007(201001)
 
 					String code = href.substring(27, 35);// 股票代号
-					if (!code.matches("(sh600|sh601|sz000|sz300|sz002|sz112)\\d{3}")) {
+					// 取沪A/深A/创业板/中小板的代码
+					if (!code
+							.matches("(sh600|sh601|sz000|sz300|sz002|sz112)\\d{3}")) {
 						continue;
 					}
 					String name = text.substring(0, text.indexOf("("));// 公司名称

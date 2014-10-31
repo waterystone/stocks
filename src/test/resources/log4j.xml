@@ -49,7 +49,7 @@
 	</logger>
 
 	<root>
-		<level value="INFO" />
+		<level value="ERROR" />
 		<appender-ref ref="rootAppender" />
 		<appender-ref ref="consoleAppender" />
 	</root>

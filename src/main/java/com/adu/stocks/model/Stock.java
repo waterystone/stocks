@@ -3,19 +3,26 @@ package com.adu.stocks.model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * 某天的股票价格信息
+ * 
+ * @author yunjiedu
+ * @email yunjiedu@sohu-inc.com
+ * @date 2014-10-31 下午5:45:06
+ */
 public class Stock {
 	private long id;
-	private String code;
-	private Date date;
-	private float lastClose;
-	private float open;
-	private float high;
-	private float low;
-	private float close;
-	private float rise;
-	private float fall;
-	private float lastRise;
-	private float lastFall;
+	private String code;// 代码
+	private Date date;// 时间
+	private float lastClose;// 昨天收盘价格
+	private float open;// 开盘价格
+	private float high;// 今日最高价
+	private float low;// 今日最低价
+	private float close;// 今日由盘价
+	private float rise;// 今日最高涨幅(相对于开盘价)
+	private float fall;// 今日最高跌幅(相对于开盘价)
+	private float lastRise;// 今日最高涨幅(相对于昨天收盘价)
+	private float lastFall;// 今日最高跌幅(相对于昨天收盘价)
 	private Timestamp insertTime;
 
 	public Stock(long id, String code, Date date, float lastClose, float open,

@@ -1,13 +1,20 @@
 package com.adu.stocks.model;
 
+/**
+ * 公司的股票报表信息
+ * 
+ * @author yunjiedu
+ * @email yunjiedu@sohu-inc.com
+ * @date 2014-10-31 下午5:43:52
+ */
 public class Result {
-	private String code;
-	private String name;
-	private int count;
-	private float avgRise;
-	private float avgFall;
-	private float avgLastRise;
-	private Float avgLastFall;
+	private String code;// 代码
+	private String name;// 公司名称
+	private int count;// 开盘-最高价浮动超过基数的天数
+	private float avgRise;// 平均开盘最高涨幅
+	private float avgFall;// 平均开盘最高跌幅
+	private float avgLastRise;// 平均昨天收盘最高涨幅
+	private Float avgLastFall;// 平均昨天收盘最高跌幅
 
 	public Result(String code, String name, int count, float avgRise,
 			float avgFall, float avgLastRise, Float avgLastFall) {
