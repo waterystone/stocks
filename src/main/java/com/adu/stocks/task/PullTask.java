@@ -50,6 +50,9 @@ public class PullTask {
 			if (notExistsCodes.size() != 0) {
 				logger.warn("[WARN-NULL-stock]notExistsCodes=" + notExistsCodes);
 			}
+			for (int i = 0; i < stocks.size(); i++) {
+				logger.debug("[ADD][" + (i + 1) + "]" + stocks.get(i));
+			}
 
 			int addCount = stockService.addStocks(stocks);// 股价信息加入到DB
 
@@ -57,7 +60,7 @@ public class PullTask {
 			logger.debug("[update-stocks]addCount=" + addCount + ",time="
 					+ (t2 - t1) + "ms");
 		} catch (Exception e) {
-			logger.error("[ERROR-updateCompanies]", e);
+			logger.error("[ERROR-updateStocksPrice]", e);
 		}
 	}
 
