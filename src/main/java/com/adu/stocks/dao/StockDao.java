@@ -45,7 +45,7 @@ public class StockDao {
 				+ " (SELECT code, COUNT(*) AS count, AVG(rise) AS avg_rise, AVG(fall) AS avg_fall, AVG(last_rise) AS avg_last_rise, AVG(last_fall) AS avg_last_fall FROM stocks WHERE date BETWEEN '%s' AND '%s' AND rise > '%f' GROUP BY code) "
 				+ " statistic, companies "
 				+ " WHERE statistic.code = companies.code"
-				+ " ORDER BY count DESC, avg_rise DESC LIMIT 100";
+				+ " ORDER BY count DESC, avg_last_rise DESC LIMIT 100";
 
 		String querySQL = String.format(format, startDate, endDate, riseRange);
 

@@ -81,7 +81,7 @@ public class EmailTask {
 			buffer.append("<table border=\"1\" align=\"center\">");
 
 			// 表头
-			buffer.append("<tr> <th>序号</th> <th>代码</th> <th>公司</th> <th>浮动超过天数</th> <th>平均开盘最高涨幅(%)</th>  <th>平均开盘最高跌幅(%)</th> <th>平均昨天收盘最高涨幅(%)</th> <th>平均昨天收盘最高跌幅(%)</th> </tr>");
+			buffer.append("<tr> <th>序号</th> <th>代码</th> <th>公司</th> <th>浮动超过天数</th> <th>平均昨天收盘最高涨幅(%)</th> <th>平均昨天收盘最高跌幅(%)</th> <th>平均开盘最高涨幅(%)</th>  <th>平均开盘最高跌幅(%)</th> </tr>");
 
 			// 每个公司的股票对应一行
 			String trFormat = "<tr> <td>%d</td> <td>%s</td> <td>%s</td> <td>%d</td> <td>%.2f</td>  <td>%.2f</td> <td>%.2f</td> <td>%.2f</td> </tr>";
@@ -89,8 +89,8 @@ public class EmailTask {
 			for (Result result : results) {
 				String tr = String.format(trFormat, count++, result.getCode(),
 						result.getName(), result.getCount(),
-						result.getAvgRise(), result.getAvgFall(),
-						result.getAvgLastRise(), result.getAvgLastFall());
+						result.getAvgLastRise(), result.getAvgLastFall(),
+						result.getAvgRise(), result.getAvgFall());
 				buffer.append(tr);
 			}
 			buffer.append("</table>");
