@@ -87,7 +87,10 @@ public class EmailTask {
 			String trFormat = "<tr> <td>%d</td> <td>%s</td> <td>%s</td> <td>%d</td> <td>%.2f</td>  <td>%.2f</td> <td>%.2f</td> <td>%.2f</td> </tr>";
 			int count = 1;
 			for (Result result : results) {
-				String tr = String.format(trFormat, count++, result.getCode(),
+				String codeTd = String
+						.format("<a href=\"http://finance.sina.com.cn/realstock/company/%s/nc.shtml\">%s</a>",
+								result.getCode(), result.getCode());
+				String tr = String.format(trFormat, count++, codeTd,
 						result.getName(), result.getCount(),
 						result.getAvgLastRise(), result.getAvgLastFall(),
 						result.getAvgRise(), result.getAvgFall());
